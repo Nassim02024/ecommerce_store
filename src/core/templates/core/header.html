@@ -1,0 +1,291 @@
+{% load static %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<div class="preloader-wrapper">
+  <div class="preloader">
+  </div>
+</div>
+
+<div  class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasCart">
+  <div class="offcanvas-header justify-content-center">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="order-md-last">
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-primary">Your cart</span>
+        <span class="badge bg-primary rounded-pill">0</span>
+      </h4>
+      
+          <ul class="list-group mb-3">
+            <li class="list-group-items d-flex justify-content-between " style="align-items: center;">
+              <span>Total (USD)</span>
+              
+              <strong class="totals-price">0</strong>
+            </li>
+          </ul>
+          {% if vendor and vendor.vid %}
+          <a href="{% url 'cardorder' vendor.vid %}?product={{ product.id }}">
+            <button class="w-100 btn btn-primary btn-lg checkouteorder" type="submit">Continue to checkout</button>
+          </a>
+      
+        {% endif %}
+        
+        </div>
+  </div>
+</div>
+
+<div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasSearch">
+  <div class="offcanvas-header justify-content-center">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="order-md-last">
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-primary">Search</span>
+      </h4>
+      <form role="search" action="index.html" method="get" class="d-flex mt-3 gap-0">
+        <input class="form-control rounded-start rounded-0 bg-light" type="email" placeholder="What are you looking for?" aria-label="What are you looking for?">
+        <button class="btn btn-dark rounded-end rounded-0" type="submit">Search</button>
+        
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<header >
+  <div class="container-fluid">
+    <div class="row py-3 border-bottom">
+      
+      <div class="col-sm-4 col-lg-3 text-center text-sm-start">
+        <div class="main-logo">
+          <a href="index.html">
+            <img style="width:60px; margin-left: 10px;" src="{% static 'images/logoB.png' %}" alt="logo" class="img-fluid">
+          </a>
+        </div>
+      </div>
+
+
+    <!-- Search  vendor  --> 
+      {% if request.resolver_match.url_name == "index" %}
+
+      <div class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
+        <div class="search-bar row bg-light p-2 my-2 rounded-4">
+          <div class="col-11 col-md-7 w-100">
+            <form style="display: flex; position: relative; width: 100%;" id="search-form" class="text-center" action="{% url "search_vendor" %}" method="GET">
+              <input name="q"  type="text" class="form-control border-0 bg-transparent" placeholder="Search for more than {{vendor.count}} vendor">
+              <button style="position: absolute; right: 0; border: none; background: unset;" type="submit">
+                <div class="col-1">
+                  <svg style="border: none;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z"/></svg>
+                </div>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+
+      <!-- Search  product  --> 
+      {% if request.resolver_match.url_name == "productsforvendor" %}
+
+      <div class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
+        <div class="search-bar row bg-light p-2 my-2 rounded-4">
+          <div class="col-11 col-md-7 w-100">
+            <form style="display: flex; position: relative; width: 100%;" id="search-form" class="text-center" action="{% url "search_product" %}" method="GET">
+              <input name="q"  type="text" class="form-control border-0 bg-transparent" placeholder="Search for more than {{product.count}} product">
+              <button style="position: absolute; right: 0; border: none; background: unset;" type="submit">
+                <div class="col-1">
+                  <svg style="border: none;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z"/></svg>
+                </div>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+
+      <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
+        
+
+        <ul class="d-flex justify-content-end list-unstyled m-0">
+          <li>
+            <a href="#" class="rounded-circle bg-light p-2 mx-1">
+              <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#heart"></use></svg>
+            </a>
+          </li>
+          <li class="" style="position: relative;">
+            <div  style=" background-color: rgba(157, 248, 77, 0.562);position: absolute;bottom:20px;right: 2px;border-radius: 50%;padding: 0px 10px 0px 10px;">
+               <span class="count-for-card-icon"  style="font-size: 12px;font-weight: 700;color: rgb(0, 0, 0);"></span>
+            </div>
+            <a href="#" class="rounded-circle bg-light p-2 mx-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+              <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#cart"></use></svg>
+            </a>
+          </li>
+          <li class="d-lg-none">
+            <a href="#" class="rounded-circle bg-light p-2 mx-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch">
+              <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#search"></use></svg>
+            </a>
+          </li>
+          <li  style="position: relative;">
+            <input type="checkbox" id="checking" >
+            <label for="checking">
+              <a style="cursor: pointer;" class="rounded-circle bg-light p-2 mx-1">
+                <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#user"></use></svg>
+              </a>
+            </label>
+            <div class="card-li-clinte">
+              <ul>
+                 <a href="{% url "customer"  %}"><li>My Account</li></a>
+                {% if request.user.is_authenticated and request.user.is_vendor %}
+                  <a href="{% url "dashbord" %}">
+                    <li>Dashboard</li>
+                  </a> 
+                {% endif %}            
+                <a style="color:rgb(194, 192, 192);" href="{% url "commingsoon" %}"><li>Order Tracking</li></a>
+                <a style="color:rgb(194, 192, 192);" href="{% url "commingsoon" %}"><li>My Wishlist</li></a>
+                <a style="color:rgb(194, 192, 192);" href="{% url "commingsoon" %}"><li>Setting</li></a>
+                <li class="nav-item">
+                  <a  href="{% url 'createstorevendorform' %}" class="nav-link "> 
+                    Create store &nbsp<i class="fas fa-store"></i>
+                  </a> 
+                </li>
+                <li><a href="{% url 'logout_view' %}">logout</a></li>
+                
+                
+
+              </ul>
+            </div>
+
+            <!-- <div id="alertuser">
+              load
+              </div> -->
+          </li>
+          
+        </ul>
+        
+      
+      </div>
+      
+    </div>
+  </div>
+  
+  <div class="container-fluid">
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{message.tags}}">
+          <strong>{{message}}</strong>
+        </div>
+      {% endfor %}
+    {% endif %}
+    
+
+
+    <div class="row py-3">
+      <div class="d-flex  justify-content-center justify-content-sm-between align-items-center">
+        <nav class="main-menu d-flex navbar navbar-expand-lg">
+
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
+
+            <div class="offcanvas-header justify-content-center">
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            
+            <div class="offcanvas-body">
+          
+              <!-- <select class="filter-categories border-0 mb-0 me-5">
+                <option>Shop by Departments</option>
+                <option>Groceries</option>
+                <option>Drinks</option>
+                <option>Chocolates</option>
+              </select> -->
+          
+              <ul class="navbar-nav justify-content-end menu-list list-unstyled d-flex gap-md-3 mb-0">
+                
+                {% if request.resolver_match.url_name == "productsforvendor" %}
+
+                <li class="nav-item dropdown">
+                  <a href="{% url "index" %}"  class="nav-link"  id="dropdownMenu"  >Home</a>
+                  
+                </li>
+
+                <li class="nav-item dropdown">
+                  <a  class="nav-link dropdown-toggle" role="button" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">Catecory</a>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+                    {% for c in categorys %}
+                    <li> <a href="{% url "product_category" c.cid %}" class="dropdown-item">{{c.categoress}} <span class="badge bg-success text-dark ms-2">PRO</span></a></li>
+                    {% endfor %}
+                  </ul>
+                </li>
+                {% endif %}
+
+                {% comment %} <li class="nav-item dropdown">
+                  <a  class="nav-link dropdown-toggle" role="button" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+                    
+                    <li> <a href="#" class="dropdown-item">All products <span class="badge bg-success text-dark ms-2">PRO</span></a></li>
+                    
+                  </ul>
+                </li> {% endcomment %}
+
+
+                <li class="nav-item">
+                  <a style="color:rgb(194, 192, 192);" href="{% url "commingsoon" %}" class="nav-link">Accessories</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" role="button" id="pages" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
+                  <ul class="dropdown-menu" aria-labelledby="pages">
+                    <li><a href="{% url "aboutus" %}" class="dropdown-item">About Us <span class="badge bg-success text-dark ms-2">PRO</span></a></li>
+                    <!-- <li><a href="#" class="dropdown-item">Shop <span class="badge bg-success text-dark ms-2">PRO</span></a></li> -->
+                    <!-- <li><a href="single-product.html" class="dropdown-item">Single Product <span class="badge bg-success text-dark ms-2">PRO</span></a></li> -->
+                    <li><a style="color:rgb(194, 192, 192);" href="{% url "commingsoon" %}" class="dropdown-item">Cart <span class="badge bg-success text-dark ms-2">PRO</span></a></li>
+                    <li><a style="color:rgb(194, 192, 192);" href="checkout.html" class="dropdown-item">Checkout <span class="badge bg-success text-dark ms-2">PRO</span></a></li>
+                    <li><a style="color:rgb(194, 192, 192);" href="{% url "commingsoon" %}" class="dropdown-item">Blog <span class="badge bg-success text-dark ms-2">PRO</span></a></li>
+                    <!-- <li><a href="single-post.html" class="dropdown-item">Single Post <span class="badge bg-success text-dark ms-2">PRO</span></a></li> -->
+                    <!-- <li><a href="styles.html" class="dropdown-item">Styles <span class="badge bg-success text-dark ms-2">PRO</span></a></li> -->
+                    <li><a style="color:rgb(194, 192, 192);" href="{% url "contactpage" %}" class="dropdown-item">Contact <span class="badge bg-success text-dark ms-2">PRO</span></a></li>
+                    <li><a style="color:rgb(194, 192, 192);" href="{% url "commingsoon" %}" class="dropdown-item">Thank You <span class="badge bg-success text-dark ms-2">PRO</span></a></li>
+                    <li><a style="color:rgb(194, 192, 192);" href="{% url "commingsoon" %}" class="dropdown-item">My Account <span class="badge bg-success text-dark ms-2">PRO</span></a></li>
+                    <li><a  href="{% url "errorpage" %}" class="dropdown-item">404 Error <span class="badge bg-success text-dark ms-2">PRO</span></a></li>
+                  </ul>
+                </li>
+                <!-- <li class="nav-item">
+                  <a href="#brand" class="nav-link">Brand</a>
+                </li> -->
+                <!-- <li class="nav-item">
+                  <a href="#sale" class="nav-link">Sale</a>
+                </li> -->
+                <li class="nav-item">
+                  <a style="color:rgb(194, 192, 192);" href="{% url "commingsoon" %}" class="nav-link">Blog</a>
+                </li>
+
+                
+
+              </ul>
+            
+            </div>
+
+          </div>
+
+        </nav>
+        <!-- <div class="d-none d-lg-block">
+          <a href="https://templatesjungle.gumroad.com/l/foodmart-bootstrap-html-template" target="_blank" class="nav-link btn-coupon-code">
+            <img src="{% static 'images/gift.svg' %}" alt="gift icon">
+            <strong class="ms-2 text-dark">Get PRO Version</strong>
+          </a>
+        </div> -->
+      </div>
+    </div>
+    
+  </div>
+
+  <script src="{% static 'js/cardorder.js' %}"></script> 
+</header>
+

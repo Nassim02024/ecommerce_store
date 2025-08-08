@@ -1,0 +1,68 @@
+{% load static %}
+
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+
+
+  <h2>Welcom in yore market</h2>
+  {% if form.errors %}
+  <div class="alert">
+    <strong>{{form.errors}}</strong>
+  </div>
+  {% endif %}
+  <div class="container" id="container">
+    <div class="form-container sign-up-container">
+      <form action="{% url 'register' %}" method="POST">
+
+        {% csrf_token %}
+        <h1>Create Account</h1>
+        <div class="social-container">
+          <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+          <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <span>or use your email for registration</span>
+
+         {{form.email}}
+         {{form.username}}
+         {{form.password1}}
+         {{form.password2}}
+         
+        <button  type="submit">Sign Up</button>
+      </form>
+    </div>
+    <div class="form-container sign-in-container">
+      <form action="{% url 'login_view' %}" method="POST">
+        {% csrf_token %}
+        <h1>Log In</h1>
+        <div class="social-container">
+          <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+          <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <span>or use your account</span>
+        <input type="email" name="email" placeholder="Email">
+        <input type="password" name="password" placeholder="Password">
+        
+        <a href="#">Forgot your password?</a>
+        <button type="submit">Log In</button>
+      </form>
+    </div>
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h1>Welcome Back!</h1>
+          <p>To keep connected with us please login with your personal info</p>
+          <button class="ghost" id="signIn" >login</button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h1>Hello, Friend!</h1>
+          <p>Enter your personal details and start journey with us</p>
+          <button type="reset" class="ghost" id="signUp">Sign Up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+<script src="{% static 'js/signup.js' %}"></script>

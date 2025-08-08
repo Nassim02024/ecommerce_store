@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  {% for order in orders %}
+  <div class="order-box">
+    <p><strong>العميل:</strong> {{ order.customer_name }}</p>
+    <p><strong>المنتج:</strong> {{ order.product_name }}</p>
+    <p><strong>السعر:</strong> {{ order.product_price }} DA</p>
+    <p><strong>الحالة:</strong> {{ order.product_status }}</p>
+    <p><strong>تاريخ الطلب:</strong> {{ order.order_date }}</p>
+    <hr>
+  </div>
+{% empty %}
+  <p>لا توجد طلبات حالياً.</p>
+{% endfor %}
+
+
+
+  <script src="{% static 'js/sucsses.js' %}"></script>
+</body>
+</html>
+
+
