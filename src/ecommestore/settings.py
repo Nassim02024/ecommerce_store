@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ag)-2xlg8@nz7d!xuf&y%=+37&g%i@9$p5z(*g%iwb-vcm@zac'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -172,6 +172,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.User'  #اسم التطبيق ثم اسم الكلاس موديل 
 
 
+LOGIN_URL = 'login_view'
+LOGIN_REDIRECT_URL = '/'
 
 # Email Setting
 import os

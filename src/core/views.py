@@ -7,6 +7,7 @@ from django.core.mail import send_mail
 # Create your views here.
 
 
+@login_required(login_url='login_view')
 def index(request):
   vendor = Vendor.objects.all()
   product = Product.objects.filter(featured=True , product_status="published")
