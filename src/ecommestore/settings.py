@@ -150,11 +150,13 @@ USE_TZ = True
 import os
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'core/src/static']  # المجلد الذي يحتوي على ملفات static أثناء التطوير
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')         # مكان جمع الملفات عند التشغيل على production
+STATICFILES_DIRS = [
+  BASE_DIR / 'src' / 'core' / 'static',
+]  
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')         
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
