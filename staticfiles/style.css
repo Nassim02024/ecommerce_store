@@ -204,7 +204,7 @@ h6 {
 .card-li-clinte {
   background-color: whitesmoke;
   width: 200px;
-  height: 35vh;
+  height: fit-content;
   position: absolute;
   top: 50px;
   right: 0;
