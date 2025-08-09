@@ -155,7 +155,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
   BASE_DIR / 'src' / 'core' / 'static',
-  BASE_DIR / 'src' / 'users' / ' static',
+  BASE_DIR / 'src' / 'users' / 'static',
   BASE_DIR / 'src' / 'aboutus' / 'static',
   BASE_DIR / 'src' / 'commingsoon' / 'static',
   BASE_DIR / 'src' / 'contactpage' / 'static',
