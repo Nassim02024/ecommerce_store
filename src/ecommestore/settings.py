@@ -172,6 +172,11 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://ecommercestore-production-0e82.up.railway.app',
+]
+
+
 JAZZMIN_SETTINGS = {
     "site_header": "control panel",
     "copyright": "codeLine",
