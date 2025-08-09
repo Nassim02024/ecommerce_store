@@ -335,7 +335,6 @@ h6 {
 
   transform-origin: center;
 
-  padding: 1rem 2rem;
   background-color: transparent;
 
   border: none;
@@ -343,9 +342,9 @@ h6 {
   transform: scale(calc(1 + (var(--active, 0) * 0.1)));
 
   transition: transform var(--transtion);
-  width: 80%;
+  width: 10px;
 
-  height:15vh;
+  
 
 }
 
@@ -369,7 +368,7 @@ h6 {
   z-index: 0;
 }
 
-.button::after {
+/* .button::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -390,7 +389,7 @@ h6 {
   border-radius: var(--border_radius);
   transition: opacity var(--transtion);
   z-index: 2;
-}
+} */
 
 .button:is(:hover, :focus-visible) {
   --active: 1;
