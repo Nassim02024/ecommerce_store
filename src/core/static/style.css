@@ -277,7 +277,7 @@ h6 {
   gap: 2rem;
 }
 .card {
-  height: 40vh;
+  height: fit-content;
   --grad: red, blue;
   padding: 0.5rem 1rem;
   background-image: linear-gradient(to bottom left, #e0e4e5, #f2f6f9);
