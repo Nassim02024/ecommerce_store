@@ -147,16 +147,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = '/static/'
+import os
+from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-import os
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = STATICFILES_DIRS = [ os.path.join(BASE_DIR , 'core/static'),]
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
- 
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'core/src/static']  # المجلد الذي يحتوي على ملفات static أثناء التطوير
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')         # مكان جمع الملفات عند التشغيل على production
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 JAZZMIN_SETTINGS = {
     "site_header": "control panel",
